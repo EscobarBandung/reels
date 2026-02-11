@@ -62,56 +62,84 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:90px 70px;
+  padding: clamp(56px, 7vw, 92px) clamp(22px, 6vw, 70px);
   text-align:center;
   color:var(--ink);
 }
 
 .card{
-  width:100%;
-  padding:54px 40px;
-  border-radius:26px;
-  background:linear-gradient(180deg,var(--glass2),var(--glass));
-  border:1px solid rgba(255,255,255,.18);
-  backdrop-filter:blur(10px);
+  width: min(86%, 560px);
+  padding: clamp(34px, 4.2vw, 52px) clamp(22px, 3.8vw, 42px);
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.10));
+  border: 1px solid rgba(255,255,255,.20);
+  box-shadow: 0 16px 44px rgba(0,0,0,.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
+
 
 .title{
   font-family:"Playfair Display",serif;
-  font-size:56px;          /* ↓ dari 78 */
-  line-height:1.15;
+  font-size: clamp(44px, 6.2vw, 56px);
+  line-height: 1.12;
   margin:0;
-  letter-spacing:-0.01em;
+  letter-spacing: -0.015em;
   opacity:0;
   transform:translateY(10px);
   animation:fadeUp .9s ease forwards;
 }
 
 .accent{
-  margin-top:12px;
-  font-family:"Pacifico",cursive;
-  font-size:38px;          /* ↓ dari 54 */
+  margin-top: 18px;
+  font-size: 34px;
+  line-height: 1;
   opacity:0;
   animation:fadeUp .9s ease .2s forwards;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,.25));
 }
 
 .kicker{
-  font-size:14px;          /* ↓ dari 18 */
-  letter-spacing:.14em;
-  opacity:.85;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.12);
+  font-size: 13px;
+  letter-spacing: .18em;
+  text-transform: lowercase;
+  opacity: .90;
+  margin-bottom: 18px;
+}
+.kicker-ico{
+  font-size: 14px;
+  transform: translateY(1px);
+  opacity: .95;
 }
 
 
 /* ===== Footer ===== */
 .corner{
   position:absolute;
-  bottom:28px;
-  left:28px;
-  right:28px;
+  left:22px;
+  right:22px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   display:flex;
   justify-content:space-between;
-  font-size:16px;
-  opacity:.85;
+  align-items:center;
+  font-size:14px;
+  opacity:.88;
+}
+
+.brand, .hint{
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.14);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(10px);
 }
 
 /* ===== Animations ===== */
@@ -139,3 +167,4 @@ body.export .frame{
   border-radius:0;
   box-shadow:none;
 }
+
