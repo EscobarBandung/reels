@@ -1,0 +1,141 @@
+:root{
+  --bg1:#1b0a11;
+  --bg2:#ff4d6d;
+  --bg3:#7c3aed;
+  --ink:#ffffff;
+  --glass:rgba(255,255,255,.10);
+  --glass2:rgba(255,255,255,.16);
+  --radius:28px;
+  --shadow:0 26px 70px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  display:grid;
+  place-items:center;
+  background:#0b0f1a;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+/* ===== Frame 9:16 ===== */
+.frame{
+  width:min(92vw,420px);
+  aspect-ratio:9/16;
+  position:relative;
+  overflow:hidden;
+  border-radius:var(--radius);
+  background:
+    radial-gradient(900px 900px at 30% 20%, rgba(255,255,255,.10), transparent 60%),
+    linear-gradient(135deg,var(--bg1),var(--bg3),var(--bg2));
+  box-shadow:var(--shadow);
+}
+
+/* ===== Visual FX ===== */
+.grain{
+  position:absolute;
+  inset:-40px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+
+.bokeh .dot{
+  position:absolute;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.7),transparent 60%);
+  opacity:.15;
+}
+
+.d1{top:-80px;left:-80px}
+.d2{top:260px;right:-100px}
+.d3{bottom:-140px;left:200px}
+
+/* ===== Content ===== */
+.content{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:90px 70px;
+  text-align:center;
+  color:var(--ink);
+}
+
+.card{
+  width:100%;
+  padding:54px 40px;
+  border-radius:26px;
+  background:linear-gradient(180deg,var(--glass2),var(--glass));
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(10px);
+}
+
+.title{
+  font-family:"Playfair Display",serif;
+  font-size:56px;          /* ↓ dari 78 */
+  line-height:1.15;
+  margin:0;
+  letter-spacing:-0.01em;
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp .9s ease forwards;
+}
+
+.accent{
+  margin-top:12px;
+  font-family:"Pacifico",cursive;
+  font-size:38px;          /* ↓ dari 54 */
+  opacity:0;
+  animation:fadeUp .9s ease .2s forwards;
+}
+
+.kicker{
+  font-size:14px;          /* ↓ dari 18 */
+  letter-spacing:.14em;
+  opacity:.85;
+}
+
+
+/* ===== Footer ===== */
+.corner{
+  position:absolute;
+  bottom:28px;
+  left:28px;
+  right:28px;
+  display:flex;
+  justify-content:space-between;
+  font-size:16px;
+  opacity:.85;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== Variant Control ===== */
+[data-variant="1"] .t1{display:block}
+[data-variant="1"] .t2,
+[data-variant="1"] .t3{display:none}
+
+[data-variant="2"] .t2{display:block}
+[data-variant="2"] .t1,
+[data-variant="2"] .t3{display:none}
+
+[data-variant="3"] .t3{display:block}
+[data-variant="3"] .t1,
+[data-variant="3"] .t2{display:none}
+
+/* ===== Export Mode ===== */
+body.export .frame{
+  width:1080px;
+  height:1920px;
+  border-radius:0;
+  box-shadow:none;
+}
